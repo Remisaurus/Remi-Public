@@ -8,7 +8,7 @@ say = pyttsx3.init()
 def sayit(text):
     voice = say.getProperty('voices') #get the available voices
     # say.setProperty('voice', voice[0].id) #set the voice to index 0 for male voice
-    say.setProperty('voice', voice[1].id) #changing voice to index 1 for female voice
+    say.setProperty('voice', voice[2].id) #changing voice to index 2 for female voice (changes with available voices)
     say.say(text)
     say.runAndWait()
     
