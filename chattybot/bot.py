@@ -4,6 +4,8 @@ from cleaner import clean_corpus
 import pyttsx3
 import speech_recognition
 
+# with .clock error from sqlalchemy: replace the time.clock with time.perf_counter()
+
 CORPUS_FILE = "./studydata/chat.txt"
 
 chategg = ChatBot("Chategg")
