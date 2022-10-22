@@ -1,27 +1,30 @@
+
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from cleaner import clean_corpus
-import pyttsx3
+from gtts import gTTS
+import sounddevice as sd
+import soundfile as sf
 import speech_recognition
 
 # with .clock error from sqlalchemy: replace the time.clock with time.perf_counter()
 
 CORPUS_FILE = "./studydata/chat.txt"
 
+language = 'nl'
 chategg = ChatBot("Chategg")
 trainer = ListTrainer(chategg)
-say = pyttsx3.init()
 recognize = speech_recognition.Recognizer()
 mic = speech_recognition.Microphone()
-
-voice = say.getProperty('voices') 
-say.setProperty('voice', voice[1].id)  # set to NL language speech
 
 exit_conditions = (":q", "quit", "exit", "stop")
 
 def sayit(text):
-    say.say(text)
-    say.runAndWait()
+    myobj = gTTS(text=text, lang=language, slow=False)
+    myobj.save("Sayit.wav")
+    data, fs = sf.read('Sayit.wav', dtype='float32')  
+    sd.play(data, fs)
+    status = sd.wait()  # Wait until file is done playing
     
 def listen():
     with mic as source:
@@ -51,7 +54,8 @@ def communicate():
 
 # starting chatbot (Dutch in this case)
     
-sayit('maar zeg alee, ik ben toch niet zot. Geef mij een paar minuten om gegevens te bestuderen. Ik ga nu beginnen.')
+sayit('Geef mij een paar minuten om gegevens te bestuderen.')
+sayit('Ik ga nu beginnen.')
 
 # teaching chatbot (with txt file exported with Whatsapp stated in CORPUS_FILE) 
 
