@@ -49,7 +49,7 @@ def communicate():
     else:
         respons = chategg.get_response(query)
         print(f"🥚 {respons}")
-        sayit(respons)
+        sayit(str(respons))
         communicate()
 
 # starting chatbot (Dutch in this case)
