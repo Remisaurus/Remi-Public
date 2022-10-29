@@ -32,11 +32,13 @@ def remove_chat_metadata(chat_export_file):
     dezenogeven = list(cleaned_corpus.split("\n"))
     while '' in dezenogeven:
         dezenogeven.remove('')
+    while ' ' in dezenogeven:
+        dezenogeven.remove(' ')
     return dezenogeven 
 
 def remove_non_message_text(export_text_lines):
     messages = []
-    filter_out_msgs = ['<Media omitted>', 'terry', 'Terry', 'TERRY', 'Yorick', 'yorick', 'YORICK', 'tomas', 'Tomas', 'TOMAS', 'Remi', 'remi', 'REMI', 'nigel', 'Nigel', 'NIGEL', 'Bart', 'bart', 'BART', 'Maarten', 'maarten', 'MAARTEN', 'martijn', 'Martijn', 'MARTIJN', 'baldwin', 'Baldwin', 'BALDWIN', 'joeri', 'Joeri', 'JOERI', 'Roel', 'roel', 'ROEL', 'Boris', 'boris', 'dwayne', 'Lyr', 'Kara', 'kara', 'Nanda', 'nanda', 'https://', 'mama', 'Mama', 'mamma', 'Mamma', 'mam', 'Mam', 'pappa', 'Pappa', 'papa', 'Papa', 'oma', 'Oma', 'opa', 'Opa', 'Elvin', 'elvin', 'juana', 'Juana', 'aming', 'Aming', 'liming', 'Liming', 'Elia', 'elia', 'straat', 'bolle', 'Bolle', 'lea', 'Lea', 'meijer', 'Meijer', 'Youtube', 'youtube', 'raym', 'Raym', 'nan', 'bor']
+    filter_out_msgs = ['<Media omitted>', 'terry', 'Terry', 'TERRY', 'Yorick', 'yorick', 'YORICK', 'tomas', 'Tomas', 'TOMAS', 'Remi', 'remi', 'REMI', 'nigel', 'Nigel', 'NIGEL', 'Bart', 'bart', 'BART', 'Maarten', 'maarten', 'MAARTEN', 'martijn', 'Martijn', 'MARTIJN', 'baldwin', 'Baldwin', 'BALDWIN', 'joeri', 'Joeri', 'JOERI', 'Roel', 'roel', 'ROEL', 'Boris', 'boris', 'dwayne', 'Lyr', 'Kara', 'kara', 'Nanda', 'nanda', 'https://', 'mama', 'Mama', 'mamma', 'Mamma', 'mam', 'Mam', 'pappa', 'Pappa', 'papa', 'Papa', 'oma', 'Oma', 'opa', 'Opa', 'Elvin', 'elvin', 'juana', 'Juana', 'aming', 'Aming', 'liming', 'Liming', 'Elia', 'elia', 'straat', 'bolle', 'Bolle', 'lea', 'Lea', 'meijer', 'Meijer', 'Youtube', 'youtube', 'raym', 'Raym', 'nan', 'bor', 'Wouter']
     for every in export_text_lines:
         x = 0
         for all in filter_out_msgs:

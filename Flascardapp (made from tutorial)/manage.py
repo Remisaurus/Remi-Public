@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
+'''type: "python manage.py runserver" to start development server from the command-line'''
 import os
 import sys
 
