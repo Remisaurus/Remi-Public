@@ -61,7 +61,7 @@ sayit('Ik ga nu beginnen.')
 
 cleaned_corpus = clean_corpus(CORPUS_FILE)
 
-trainer.train(cleaned_corpus)
+#trainer.train(cleaned_corpus)
 trainer.train([
     "Hoi",
     "Hallo, vriend",
