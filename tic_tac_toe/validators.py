@@ -3,10 +3,10 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .models import Grid, GameState, Mark
-    from .players import Player
+    from models import Grid, GameState, Mark
+    from players import Player
     
-from .exceptions import InvalidGameState
+from exceptions import InvalidGameState
     
 import re
 

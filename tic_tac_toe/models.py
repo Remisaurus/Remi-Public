@@ -2,8 +2,8 @@ import enum
 import re
 from dataclasses import dataclass
 from functools import cached_property
-from .validators import validate_game_state, validate_grid
-from .exceptions import InvalidMove
+from validators import validate_game_state, validate_grid
+from exceptions import InvalidMove
 
 WINNING_PATTERNS = (
     "???......",
