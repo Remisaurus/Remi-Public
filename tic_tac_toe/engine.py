@@ -1,5 +1,6 @@
-from dataclasses import dataclass
+# Check play.py for starting simple console game.
 
+from dataclasses import dataclass
 from players import Player
 from renderers import Renderer
 from exceptions import InvalidMove

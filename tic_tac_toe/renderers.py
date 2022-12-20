@@ -1,3 +1,5 @@
+# Check play.py for starting simple console game.
+
 import abc
 import textwrap
 from typing import Iterable
