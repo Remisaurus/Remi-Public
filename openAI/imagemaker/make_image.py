@@ -3,7 +3,7 @@ from base64 import b64decode
 from pathlib import Path
 
 IMAGE_DIR = Path.cwd() / "images" 
-PROMPT = "dinosaur mouth hatching from egg"
+PROMPT = "A dog wearing a suit"
 
 IMAGE_DIR.mkdir(exist_ok=True)
 
