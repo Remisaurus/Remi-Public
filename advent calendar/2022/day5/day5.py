@@ -14,19 +14,40 @@ stack9 = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 
 
 def main():
     input = retrieve_input('input2.txt')
+    
     '''  
     part 1
     for every in input:
         current = extractnumbers(every)
         move_multiple_crates(current)  
     '''
-    '''
-    part 2
+    
+    # part 2
+    # Even though all seems to work correctly, the correct answer does not get produced. (this part fails).
     for every in input:
         current = extractnumbers(every)
+        print(f'moving {current[0]} crates from {current[1]} (which has {crate_counter_precise(current[1])} crates) to {current[2]} (which has {crate_counter_precise(current[2])} crates).')
         new_crane(current)
+        print(f'finished moving {current[0]} crates from {current[1]} (which now has {crate_counter_precise(current[1])} crates) to {current[2]} (which now has {crate_counter_precise(current[2])} crates).')
+        
     '''
-    
+    print(stack8)
+    print(stack9)
+    new_crane([5,9,8])
+    print(stack8)
+    print(stack9)
+    '''  
+    '''
+    print(stack1)
+    print(stack2)
+    print(stack3)
+    print(stack4)
+    print(stack5)
+    print(stack6)
+    print(stack7)
+    print(stack8)
+    print(stack9)
+    '''
     print_top_crate(1)
     print_top_crate(2)
     print_top_crate(3)
@@ -41,7 +62,6 @@ def print_top_crate(stack):
     allcount = 0
     for all in globals()[f'stack{stack}']:
         if allcount == len(globals()[f'stack{stack}']):
-            print('GRR')
             return ' '
         elif all == ' ':
             allcount += 1
@@ -54,16 +74,27 @@ def new_crane(three_numbers):
     amount_of_moves = three_numbers[0]
     while amount_of_moves > 0:
         available_chests = crate_counter(int(three_numbers[1]))
-        if amount_of_moves > 1 and available_chests > 1:
-            deploy_crate_stack(get_upto_crates(three_numbers[1], crate_counter(int(three_numbers[1]))), three_numbers[2])
-            amount_of_moves -= available_chests
-        elif amount_of_moves == 1 or available_chests == 1:
+        if available_chests == 0:
+            break
+        elif amount_of_moves == 0:
+            break
+        elif available_chests == 1:
             move_single_crate(three_numbers)
             amount_of_moves -= 1
-            break
-        elif available_chests == 0:
-            break
-             
+            continue      
+        elif amount_of_moves == 1:
+            move_single_crate(three_numbers)
+            amount_of_moves -= 1
+            continue      
+        else:
+            if amount_of_moves >= 3:
+                amount_of_moves -= crate_counter(three_numbers[1])
+                deploy_crate_stack(get_upto_crates(three_numbers[1], crate_counter(three_numbers[1])), three_numbers[2])
+                continue
+            if amount_of_moves == 2:
+                deploy_crate_stack(get_upto_crates(three_numbers[1], 2), three_numbers[2])
+                amount_of_moves -= 2
+                continue
 
 def get_upto_crates(fromstack, number):
     count = 0
@@ -76,6 +107,7 @@ def get_upto_crates(fromstack, number):
             ff.append(globals()[f'stack{fromstack}'][allcount])
             globals()[f'stack{fromstack}'][allcount] = ' '
             count += 1
+            allcount += 1
             break
         elif all == ' ':
             allcount += 1
@@ -87,8 +119,14 @@ def get_upto_crates(fromstack, number):
             count += 1
             continue
     return ff
+
+def crate_counter_precise(stack):
+    count = 0
+    for all in globals()[f'stack{stack}']:
+        if all != ' ':
+            count += 1
+    return count
         
-    
 def crate_counter(stack):
     if globals()[f'stack{stack}'][-1] == ' ':
         return 0
