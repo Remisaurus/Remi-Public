@@ -3,7 +3,7 @@ from base64 import b64decode
 from pathlib import Path
 
 IMAGE_DIR = Path.cwd() / "images" 
-PROMPT = "a terrain map with black borders"
+PROMPT = "Cartoony character shivering while sleeping in a bed with a pitch black background"
 
 IMAGE_DIR.mkdir(exist_ok=True)
 
@@ -12,7 +12,7 @@ openai.api_key_path = 'C:\Temp\OpenAI_API_KEY_.txt'
 response = openai.Image.create(
     prompt=PROMPT,
     n=1, # number of images created.
-    size="512x512", # either "256x256", "512x512", or "1024x1024" in string
+    size="1024x1024", # either "256x256", "512x512", or "1024x1024" in string
     response_format="b64_json",
 )
 
