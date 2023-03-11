@@ -1,5 +1,0 @@
-# Check play.py for starting simple console game.
-
-from cli import main
-
-main()

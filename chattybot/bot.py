@@ -10,6 +10,8 @@ import speech_recognition
 # with .clock error from sqlalchemy: replace the time.clock with time.perf_counter()
 
 CORPUS_FILE = "./studydata/chat.txt"
+CORPUS_FILE2 = "./studydata/chats.txt"
+
 
 language = 'nl'
 chategg = ChatBot("Chategg")
@@ -60,6 +62,13 @@ sayit('Ik ga nu beginnen.')
 # teaching chatbot (with txt file exported with Whatsapp stated in CORPUS_FILE) 
 
 cleaned_corpus = clean_corpus(CORPUS_FILE)
+f = open(CORPUS_FILE2, "x")
+f = open(CORPUS_FILE2, "a")
+for line in cleaned_corpus:
+    f.write(line)
+    f.write('\n')
+f.close()
+
 
 #trainer.train(cleaned_corpus)
 trainer.train([
